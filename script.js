@@ -1,46 +1,31 @@
-// criar uma variável para receber a url inicial
-let currentPageUrl = 'http swapi.dev/api/planets/';
+// criar uma variável para receber a url inicial, como ela irá mudar, devemos usar let
+let paginaAtualUrl = 'http swapi.dev/api/planets/';
 
-fetch('http swapi.dev/api/planets/',{mode:'cors'})
-{
-    console.log(currentPageUrl);
-}
-/*
-//criar função que irá executar qdo a página for carregada pela primeira vez ou recarregada
+/* Onload: Sempre que a página for carregada ou recarregada, será executada uma função
+que irá fazer a requisição para a api onde irá carregar os cards */
+
+/* Try e Catch | Tente e Pegar
+No Try, se tiver sucesso, irá executar o que tiver dentro do bloco, caso contrário,
+irá pegar o comando que está dentro do bloco Catch */
+
+/* Async e Await | Assíncrono e Aguardar
+Assíncrono é quando não ocorre ao mesmo tempo que outro
+A função carregandoPersonagens é uma requisição para api retornar com os personagens,
+ela não acontece ao mesmo tempo que onload, pois aguarda uma resposta, por isso
+colocamos async em onload e await em carregandoPersonagens
+
+*/
+
 window.onload = async () => {
-
-    // sempre que a função window.onload for executada, receberá uma url
-    // na primeira vez receberá a url principal, depois receberá outras
     try{
-        await loadPlanets(currentPageUrl); 
-
-    }catch(error){
-        //alert('Erro ao carregar planetas');
+        await carregandoPersonagens(paginaAtualUrl);
+    } catch (error) {
         console.log(error);
+        alert('Erro ao carregar cards')
     }
+};
 
-    // criar uma variável para atribuir a div que iremos interagir
-    // usar o innerHTML para alterar o html dessa div
-    async function loadPlanets(url){
-        const mainContent = document.getElementsByClassName('main-content');
-        mainContent.innerHTML = '';
-    }
-
-    // criar uma variável que irá armazenar a resposta de uma requisição
-    // criar outra variavel que ira armazenar os dados convertidos para Json
-    try{
-        const response = await fetch(url);
-        responseJson = await response.json();
-    }catch{
-       // alert('Erro ao carregar planetas');
-        console.log(error);
-    }
-
-
-    
-}*/
-
-
+// Criando o corpo da função carregandoPersonagens()
 
 
 
