@@ -1,5 +1,5 @@
 // criar uma variável para receber a url inicial, como ela irá mudar, devemos usar let
-let paginaAtualUrl = 'http swapi.dev/api/planets/';
+let paginaAtualUrl = 'https://swapi.dev/api/planets/'
 
 /* Onload: Sempre que a página for carregada ou recarregada, será executada uma função
    que irá fazer a requisição para a api onde irá carregar os cards
@@ -21,7 +21,7 @@ window.onload = async () => {
         await carregandoPlanetas(paginaAtualUrl);
     } catch (error) {
         console.log(error);
-        alert('Erro ao carregar cards');
+        alert('XXXXXXXXXXXXXXX');
     }
 };
 
@@ -38,34 +38,40 @@ window.onload = async () => {
 */
 
 async function carregandoPlanetas(url){
-const mainContent = document.getElementsByClassName("main-content");
-mainContent.window.innerHtml = "";
+const mainContent = document.getElementsByClassName("main-content")
+mainContent.innerHtml = "";
 
 try{
     const resposta = await fetch(url);
-    const respostaJason = await resposta.json();
+    const respostaJson = await resposta.json();
+
+    respostaJson.results.forEach((character) => {
+        const card = document.createElement("div")
+        card.style.backgroundImage = url('https://starwars-visualguide.com/#/planets/13')
+        card.className = "card"
+
+        const cardTextContainer = document.createElement("div")
+        cardTextContainer.className = "card-text-container"
+
+        const cardText = document.createElement("span")
+        cardText.id = "card-text"
+        cardText.innerText = `${planets.name}`
+
+        cardTextContainer.appendChild(cardText)
+        card.appendChild(cardTextContainer)
+        mainContent.appendChild(card)
+
+    });
+
+    carregandoPlanetas = url
 
 }catch(error){
     alert('Erro ao carregar cards');
     console.log(error);
-};
-
-respostaJason.results.forEach(planets) => {
-    const card = document.createElement('div')
-    card.style.backgroundImage("https://swapi.dev/api/planets/")
-    card.className = "card"
-
-    const cardTextContainer = document.createElement('div')
-    cardTextContainer.className = "card-text-container"
-
-    const cardText = document.createElement('span')
-    cardText.className = "card-text"
-
-    cardTextContainer.appendChild(cardText)
-    card.appendChild(cardTextContainer)
-};
-
 }
+}
+
+
 
 
 
