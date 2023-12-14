@@ -1,5 +1,5 @@
 // criar uma variável para receber a url inicial, como ela irá mudar, devemos usar let
-let paginaAtualUrl = 'https://swapi.dev/api/planets/'
+let atualPagelUrl = 'https://swapi.dev/api/planets/'
 
 /* Onload: Sempre que a página for carregada ou recarregada, será executada uma função
    que irá fazer a requisição para a api onde irá carregar os cards
@@ -16,14 +16,15 @@ let paginaAtualUrl = 'https://swapi.dev/api/planets/'
 
 // Leia: Quando carregar a página, aguarde carregar a url inicial
 
-window.onload = async () => {
+
+window.onload = async () =>{
     try{
-        await carregandoPlanetas(paginaAtualUrl);
-    } catch (error) {
-        console.log(error);
-        alert('XXXXXXXXXXXXXXX');
+        await carregarPlanetasUrl(atualPagelUrl);
+    }catch (error){
+    console.log(error);
+    alert('XXXXXXXXXXXXXXX');
     }
-};
+}
 
 // Criando o corpo da função carregandoPlanetas()
 
@@ -37,40 +38,40 @@ window.onload = async () => {
    - apagar os cards no html e testar o javascript
 */
 
-async function carregandoPlanetas(url){
-const mainContent = document.getElementsByClassName("main-content")
-mainContent.innerHtml = "";
+async function carregarPlanetasUrl(url){
+    const mainContent = document.getElementById("main-content")
+    mainContent.innerHTML = '';
 
-try{
-    const resposta = await fetch(url);
-    const respostaJson = await resposta.json();
+    try{
+        const resposta = await fetch(url);
+        const respostaJson = await resposta.json();
 
-    respostaJson.results.forEach((character) => {
-        const card = document.createElement("div")
-        card.style.backgroundImage = url('https://starwars-visualguide.com/#/planets/13')
-        card.className = "card"
+        respostaJson.results.forEach((planets) => {
+            
+            const card = document.createElement("div")
+            card.style.backgroundImage = `url('https://starwars-visualguide.com/assets/img/planets/2.jpg')`
+            card.className = "card"
 
-        const cardTextContainer = document.createElement("div")
-        cardTextContainer.className = "card-text-container"
+            const cardTextContainer = document.createElement("div")
+            cardTextContainer.className = "card-text-container"
 
-        const cardText = document.createElement("span")
-        cardText.id = "card-text"
-        cardText.innerText = `${planets.name}`
+            const cardText = document.createElement("span")
+            cardText.className = "card-text"
+            cardText.innerText = `${planets.name}`
 
-        cardTextContainer.appendChild(cardText)
-        card.appendChild(cardTextContainer)
-        mainContent.appendChild(card)
+            mainContent.appendChild(card)
+            card.appendChild(cardTextContainer)
+            cardTextContainer.appendChild(cardText)
+        });
 
-    });
+        atualPagelUrl = url
 
-    carregandoPlanetas = url
+        }catch(error){
+            alert('Erro ao carregar cards');
+            console.log(error);
+        }
 
-}catch(error){
-    alert('Erro ao carregar cards');
-    console.log(error);
 }
-}
-
 
 
 
