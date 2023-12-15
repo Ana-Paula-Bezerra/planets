@@ -78,20 +78,20 @@ i:hover {
     padding: 0 20px;
 }
 
-.card-container{
-    width: 200px;
-    height: 240px;
+.card{
+    width: 250px;
+    height: 300px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    align-items:end;
+    justify-content: end;
     border-radius: 8px;
-    background-size: cover;
+    background-size: contain;
     cursor: pointer;
     transition: 0.5s;
 }
 
-.card-container:hover{
+.card:hover{
     transform: scale(1.02);
 }
 

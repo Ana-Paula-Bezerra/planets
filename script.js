@@ -49,7 +49,8 @@ async function carregarPlanetasUrl(url){
         respostaJson.results.forEach((planets) => {
             
             const card = document.createElement("div")
-            card.style.backgroundImage = `url('https://starwars-visualguide.com/assets/img/planets/2.jpg')`
+            card.style.backgroundImage = 
+            `url('https://starwars-visualguide.com/assets/img/planets/${planets.url.replace(/\D/g, "")}.jpg')`
             card.className = "card"
 
             const cardTextContainer = document.createElement("div")
@@ -59,9 +60,9 @@ async function carregarPlanetasUrl(url){
             cardText.className = "card-text"
             cardText.innerText = `${planets.name}`
 
-            mainContent.appendChild(card)
-            card.appendChild(cardTextContainer)
             cardTextContainer.appendChild(cardText)
+            card.appendChild(cardTextContainer)
+            mainContent.appendChild(card)
         });
 
         atualPagelUrl = url
