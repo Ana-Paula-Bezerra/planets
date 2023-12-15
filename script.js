@@ -22,8 +22,15 @@ window.onload = async () =>{
         await carregarPlanetasUrl(atualPagelUrl);
     }catch (error){
     console.log(error);
-    alert('XXXXXXXXXXXXXXX');
+    alert('Erro ao carregar a página');
     }
+
+    const previousButton = document.getElementClassName("previous-button")
+    const nextButton = document.getElementsByClassName("next-button")
+
+    previousButton.addEventListner('click',loadPreviousPage)
+    nextButton.addEventListner('click',loadNextPage)
+
 }
 
 // Criando o corpo da função carregandoPlanetas()
@@ -65,15 +72,51 @@ async function carregarPlanetasUrl(url){
             mainContent.appendChild(card)
         });
 
+        const previousButton = document.getElementById("previous-button")
+        const nextButton = document.getElementById("next-button")
+
+        nextButton.ariaDisabled = !respostaJson.next
+        previousButton.ariaDisabled = !respostaJson.previous
+
+        previousButton.style.visibility = respostaJson.previous? "visible" : "hidden"
+
         atualPagelUrl = url
 
         }catch(error){
             alert('Erro ao carregar cards');
             console.log(error);
         }
-
 }
 
+async function loadNextPage(){
+    if (!atualPagelUrl) return;
+
+    try{
+        const resposta = await fetch(atualPagelUrl)
+        const respostaJson = await resposta.json()
+
+        await carregarPlanetasUrl(respostaJson.next)
+
+    } catch(error) {
+        console.log(error)
+        alert('Erro ao carregar a próxima página')
+    }
+}
+
+async function loadPreviousPage(){
+    if(!atualPagelUrl) return;
+
+    try{
+        const resposta = await fetch(atualPagelUrl)
+        const respostaJson = await resposta.json()
+
+        await carregarPlanetasUrl(respostaJson.previous)
+
+    } catch(error) {
+        console.log(error)
+        alert('Erro ao carregar a página anterior')
+    }
+}
 
 
 

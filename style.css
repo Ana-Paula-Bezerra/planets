@@ -87,6 +87,7 @@ i:hover {
     justify-content: end;
     border-radius: 8px;
     background-size: contain;
+    background-repeat: no-repeat;
     cursor: pointer;
     transition: 0.5s;
 }
@@ -151,6 +152,10 @@ i:hover {
 .previous-button:hover{
     background-color: #000;
     color: gold;
+}
+
+#previous-button{
+    visibility: hidden;
 }
 
 footer{
