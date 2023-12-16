@@ -79,8 +79,8 @@ i:hover {
 }
 
 .card{
-    width: 250px;
-    height: 300px;
+    width: 200px;
+    height: 250px;
     display: flex;
     flex-direction: column;
     align-items:end;
@@ -115,7 +115,7 @@ i:hover {
     font-family:'Star Wars', sans-serif;
 }
 
-#card-text{
+.card-text{
     color: gold;
 }
 
@@ -128,7 +128,7 @@ i:hover {
     justify-content: space-around;
 }
 
-.next-button{
+#next-button{
     width: 70px;
     height: 25px;
     background-color: gold;
@@ -136,12 +136,12 @@ i:hover {
     border-radius: 3px;
 }
 
-.next-button:hover{
+#next-button:hover{
     background-color: #000;
     color: gold;
 }
 
-.previous-button{
+#previous-button{
     width: 70px;
     height: 25px;
     background-color: gold;
@@ -149,7 +149,7 @@ i:hover {
     border-radius: 3px;
 }
 
-.previous-button:hover{
+#previous-button:hover{
     background-color: #000;
     color: gold;
 }
