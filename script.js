@@ -68,8 +68,14 @@ async function carregarPlanetasUrl(url){
 
             cardTextContainer.appendChild(cardText)
             card.appendChild(cardTextContainer)
+
+            card.onclick = () => {
+                const modal = document.getElementById('modal')
+                modal.style.visibility = "visible"
+            }
+
             mainContent.appendChild(card)
-        });
+            });
 
         const previousButton = document.getElementById('previous-button')
         const nextButton = document.getElementById('next-button')
@@ -117,5 +123,8 @@ async function loadPreviousPage(){
     }
 }
 
-
+function hideModal(){
+    const modal = document.getElementById(modal)
+    modal.style.visibility = "hidden"
+}
 
